@@ -1,6 +1,6 @@
 <?php
 
-namespace Portrino\PxICal\Mvc\View;
+namespace Portrino\PxICal\Service;
 
 /***************************************************************
  *  Copyright notice
@@ -28,27 +28,36 @@ namespace Portrino\PxICal\Mvc\View;
 
 use Eluceo\iCal\Component\Calendar;
 use Eluceo\iCal\Component\Event;
-use Portrino\PxICal\Service\ICalFileServiceInterface;
-use TYPO3\CMS\Core\Resource\File;
-use TYPO3\CMS\Core\Utility\File\BasicFileUtility;
+use Portrino\PxICal\Domain\Model\Interfaces\IcalEventInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\PathUtility;
 
 /**
- * Class ICalView
- * @package Portrino\PxICal\Mvc\View
+ * Class ICalFileService
+ * @package Portrino\PxICal\Service
  */
 class ICalFileService implements ICalFileServiceInterface
 {
-    const FOLDER_ICalFiles = 'px_ical';
+    const FOLDER_ICALFILES = 'px_ical';
 
     const PREFIX = 'calendar';
 
     const FILE_EXTENSION = '.ics';
 
     /**
+     * Create iCal file from domain object which implements the IcalEventInterface
+     *
+     * @param IcalEventInterface $domainObject
+     * @return string Filepath
+     */
+    public function createFromDomainObject($domainObject)
+    {
+        return $this->create($domainObject->__toICalEvent());
+    }
+
+    /**
      * @param Event $vEvent
-     * @return File
+     * @return string Filepath
      */
     public function create($vEvent)
     {
@@ -90,7 +99,7 @@ class ICalFileService implements ICalFileServiceInterface
          * we have to check if the tempFolder exists via pure php methods,
          * because folder is not part of FAL ResourceStorage
          */
-        $tempFolder = GeneralUtility::getFileAbsFileName('typo3temp/' . self::FOLDER_ICalFiles);
+        $tempFolder = GeneralUtility::getFileAbsFileName('typo3temp/' . self::FOLDER_ICALFILES);
         $tempFolder = PathUtility::sanitizeTrailingSeparator($tempFolder);
         if (file_exists($tempFolder) === false) {
             mkdir($tempFolder, 0775, true);

@@ -27,6 +27,7 @@ namespace Portrino\PxICal\Service;
  ***************************************************************/
 use Eluceo\iCal\Component\Calendar;
 use Eluceo\iCal\Component\Event;
+use Portrino\PxICal\Domain\Model\Interfaces\IcalEventInterface;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\SingletonInterface;
 
@@ -37,10 +38,18 @@ use TYPO3\CMS\Core\SingletonInterface;
 interface ICalFileServiceInterface extends SingletonInterface
 {
     /**
+     * Create iCal file from domain object which implements the IcalEventInterface
+     *
+     * @param IcalEventInterface $domainObject
+     * @return string Filepath
+     */
+    public function createFromDomainObject($domainObject);
+
+    /**
      * Create iCal file from Event object
      *
      * @param Event $vEvent
-     * @return File
+     * @return string Filepath
      */
     public function create($vEvent);
 
