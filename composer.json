@@ -1,0 +1,40 @@
+{
+    "name": "portrino/px_ical",
+    "description": "Provides classes to render ical via eluceo iCal lib (https://github.com/markuspoerschke/iCal)",
+    "type": "typo3-cms-extension",
+    "keywords": [
+        "TYPO3",
+        "CMS",
+        "ical",
+        "ics",
+        "typo3",
+        "portrino"
+    ],
+    "homepage": "http://typo3.org",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Andre Wuttig",
+            "email": "wuttig@portrino.de",
+            "homepage": "http://www.portrino.de",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "dev@portrino.de",
+        "issues": "https://github.com/portrino/px_ical/issues",
+        "source": "https://github.com/portrino/px_ical"
+    },
+    "require": {
+        "typo3/cms-core": ">=7.6.2,<8.0",
+        "eluceo/ical": "~0.11.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Portrino\\PxICal\\": "Classes"
+        }
+    },
+    "replace": {
+        "px_ical": "*"
+    }
+}
