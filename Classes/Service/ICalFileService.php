@@ -56,6 +56,17 @@ class ICalFileService implements ICalFileServiceInterface
     }
 
     /**
+     * Remove corresponding iCal file of domain object which was maybe created before
+     *
+     * @param IcalEventInterface $domainObject
+     * @return bool
+     */
+    public function removeByDomainObject($domainObject)
+    {
+        return $this->remove($domainObject->__toICalEvent());
+    }
+
+    /**
      * @param Event $vEvent
      * @return string Filepath
      */
@@ -76,7 +87,7 @@ class ICalFileService implements ICalFileServiceInterface
 
     /**
      * @param Event $vEvent
-     * @return boolean
+     * @return bool
      */
     public function remove($vEvent)
     {

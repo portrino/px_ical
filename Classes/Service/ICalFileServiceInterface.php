@@ -37,6 +37,7 @@ use TYPO3\CMS\Core\SingletonInterface;
  */
 interface ICalFileServiceInterface extends SingletonInterface
 {
+
     /**
      * Create iCal file from domain object which implements the IcalEventInterface
      *
@@ -44,6 +45,14 @@ interface ICalFileServiceInterface extends SingletonInterface
      * @return string Filepath
      */
     public function createFromDomainObject($domainObject);
+
+    /**
+     * Remove corresponding iCal file of domain object which was maybe created before
+     *
+     * @param IcalEventInterface $domainObject
+     * @return bool
+     */
+    public function removeByDomainObject($domainObject);
 
     /**
      * Create iCal file from Event object
