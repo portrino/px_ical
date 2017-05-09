@@ -28,6 +28,7 @@ namespace Portrino\PxICal\Mvc\View;
 
 use Eluceo\iCal\Component\Calendar;
 use Eluceo\iCal\Component\Event;
+use Portrino\PxICal\Domain\Model\Interfaces\IcalEventInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\View\AbstractView;
 use TYPO3\CMS\Extbase\Mvc\Web\Response as WebResponse;
@@ -48,7 +49,12 @@ class ICalView extends AbstractView
     /**
      * @var string
      */
-    protected $fileName = 'cal.ics';
+    protected $overrideFileName = '';
+
+    /**
+     * @var string
+     */
+    protected $prefix = 'calendar_';
 
     /**
      *
@@ -77,9 +83,11 @@ class ICalView extends AbstractView
                     // TypoScriptFrontendController will send the header later with the Content-Type which we set here.
                     $typoScriptFrontendController->setContentType('text/calendar');
                 } else {
-                    // Although the charset header is disabled in configuration, we *must* send a Content-Type header here.
+                    // Although the charset header is disabled in configuration, we *must* send
+                    // a Content-Type header here.
                     // Content-Type headers optionally carry charset information at the same time.
-                    // Since we have the information about the charset, there is no reason to not include the charset information although disabled in TypoScript.
+                    // Since we have the information about the charset, there is no reason
+                    // to not include the charset information although disabled in TypoScript.
                     $response->setHeader(
                         'Content-Type',
                         'text/calendar; charset=' . trim($typoScriptFrontendController->metaCharset)
@@ -89,26 +97,65 @@ class ICalView extends AbstractView
             $response->setHeader('Content-Type', 'text/calendar');
         }
 
+        $generatedFileName = '';
+
+        /**
+         * one variable can be processed
+         */
+        if (count($this->getVariablesWithIcalEvents()) === 1) {
+            foreach ($this->getVariablesWithIcalEvents() as $variable) {
+                if ($variable instanceof IcalEventInterface) {
+                    $vEvent = $variable->__toICalEvent();
+                    $this->vCalendar->addComponent($vEvent);
+                    $generatedFileName = $this->prefix . $vEvent->getUniqueId() . '.ics';
+                }
+                break;
+            }
+        }
+
+        /**
+         * multiple variables can be processed
+         */
+        if (count($this->getVariablesWithIcalEvents()) > 1) {
+            $filehash = '';
+            foreach ($this->getVariablesWithIcalEvents() as $variable) {
+                if ($variable instanceof IcalEventInterface) {
+                    $vEvent = $variable->__toICalEvent();
+                    $this->vCalendar->addComponent($vEvent);
+                    $filehash .= $vEvent->getUniqueId();
+                }
+            }
+            $generatedFileName = $this->prefix . md5($filehash) . '.ics';
+        }
+
+        /**
+         * vEvent variable can be processed
+         */
         if (isset($this->variables['vEvent'])) {
             $vEvent = $this->variables['vEvent'];
             if ($vEvent instanceof Event) {
                 $this->vCalendar->addComponent($vEvent);
-                $this->fileName = 'calendar_' . $vEvent->getUniqueId() . '.ics';
+                $generatedFileName = $this->prefix . $vEvent->getUniqueId() . '.ics';
             }
         }
 
+        /**
+         * vEvents variable can be processed
+         */
         if (isset($this->variables['vEvents']) && is_array($this->variables['vEvents'])) {
-            $this->fileName = 'calendar_';
+            $filehash = '';
             foreach ($this->variables['vEvents'] as $vEvent) {
                 if ($vEvent instanceof Event) {
                     $this->vCalendar->addComponent($vEvent);
-                    $this->fileName .= '_' . $vEvent->getUniqueId();
+                    $filehash .= $vEvent->getUniqueId();
                 }
             }
-            $this->fileName .= '.ics';
+            $generatedFileName = $this->prefix . md5($filehash) . '.ics';
         }
 
-        $response->setHeader('Content-Disposition', 'attachment; filename="' . $this->fileName . '"');
+        $fileName = (!empty($this->overrideFileName)) ? $this->overrideFileName : $generatedFileName;
+
+        $response->setHeader('Content-Disposition', 'attachment; filename="' . $fileName . '"');
 
         return $this->vCalendar->render();
     }
@@ -122,10 +169,34 @@ class ICalView extends AbstractView
     }
 
     /**
-     * @param string $fileName
+     * @param string $overrideFileName
      */
-    public function setFileName($fileName)
+    public function setOverrideFileName(string $overrideFileName)
     {
-        $this->fileName = $fileName;
+        $this->overrideFileName = $overrideFileName;
+    }
+
+    /**
+     * @param string $prefix
+     */
+    public function setPrefix(string $prefix)
+    {
+        $this->prefix = $prefix;
+    }
+
+    /**
+     * Return only variables which have the type
+     *
+     * @return array
+     */
+    protected function getVariablesWithIcalEvents()
+    {
+        $result = [];
+        foreach ($this->variables as $variable) {
+            if ($variable instanceof IcalEventInterface) {
+                $result[] = $variable;
+            }
+        }
+        return $result;
     }
 }
