@@ -1,5 +1,5 @@
 # px_ical
-Provides TYPO3 classes to render *.ics files 
+Provides TYPO3 classes to render *.ics files via [eluceo — iCal](https://github.com/markuspoerschke/iCal) library.
 
 ## Installation
 
