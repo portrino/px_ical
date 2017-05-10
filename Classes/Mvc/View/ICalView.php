@@ -28,7 +28,7 @@ namespace Portrino\PxICal\Mvc\View;
 
 use Eluceo\iCal\Component\Calendar;
 use Eluceo\iCal\Component\Event;
-use Portrino\PxICal\Domain\Model\Interfaces\IcalEventInterface;
+use Portrino\PxICal\Domain\Model\Interfaces\ICalEventInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\View\AbstractView;
 use TYPO3\CMS\Extbase\Mvc\Web\Response as WebResponse;
@@ -104,7 +104,7 @@ class ICalView extends AbstractView
          */
         if (count($this->getVariablesWithIcalEvents()) === 1) {
             foreach ($this->getVariablesWithIcalEvents() as $variable) {
-                if ($variable instanceof IcalEventInterface) {
+                if ($variable instanceof ICalEventInterface) {
                     $vEvent = $variable->__toICalEvent();
                     $this->vCalendar->addComponent($vEvent);
                     $generatedFileName = $this->prefix . $vEvent->getUniqueId() . '.ics';
@@ -119,7 +119,7 @@ class ICalView extends AbstractView
         if (count($this->getVariablesWithIcalEvents()) > 1) {
             $filehash = '';
             foreach ($this->getVariablesWithIcalEvents() as $variable) {
-                if ($variable instanceof IcalEventInterface) {
+                if ($variable instanceof ICalEventInterface) {
                     $vEvent = $variable->__toICalEvent();
                     $this->vCalendar->addComponent($vEvent);
                     $filehash .= $vEvent->getUniqueId();
@@ -193,7 +193,7 @@ class ICalView extends AbstractView
     {
         $result = [];
         foreach ($this->variables as $variable) {
-            if ($variable instanceof IcalEventInterface) {
+            if ($variable instanceof ICalEventInterface) {
                 $result[] = $variable;
             }
         }
