@@ -28,10 +28,10 @@ namespace Portrino\PxICal\Domain\Model\Interfaces;
 use Eluceo\iCal\Component\Event;
 
 /**
- * Interface IcalEventInterface
+ * Interface ICalEventInterface
  * @package Portrino\PxICal\Domain\Model\Interfaces
  */
-interface IcalEventInterface
+interface ICalEventInterface
 {
     /**
      * @return Event

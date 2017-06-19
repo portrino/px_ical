@@ -28,7 +28,7 @@ namespace Portrino\PxICal\Service;
 
 use Eluceo\iCal\Component\Calendar;
 use Eluceo\iCal\Component\Event;
-use Portrino\PxICal\Domain\Model\Interfaces\IcalEventInterface;
+use Portrino\PxICal\Domain\Model\Interfaces\ICalEventInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\PathUtility;
 
@@ -47,7 +47,7 @@ class ICalFileService implements ICalFileServiceInterface
     /**
      * Create iCal file from domain object which implements the IcalEventInterface
      *
-     * @param IcalEventInterface $domainObject
+     * @param ICalEventInterface $domainObject
      * @return string Filepath
      */
     public function createFromDomainObject($domainObject)
@@ -58,7 +58,7 @@ class ICalFileService implements ICalFileServiceInterface
     /**
      * Remove corresponding iCal file of domain object which was maybe created before
      *
-     * @param IcalEventInterface $domainObject
+     * @param ICalEventInterface $domainObject
      * @return bool
      */
     public function removeByDomainObject($domainObject)
