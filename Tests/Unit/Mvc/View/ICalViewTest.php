@@ -7,6 +7,7 @@ use PHPUnit_Framework_MockObject_MockObject;
 
 /**
  * Class ICalViewTest
+ *
  * @package Portrino\PxICal\Tests\Mvc\View
  */
 class ICalViewTest extends TestCase
