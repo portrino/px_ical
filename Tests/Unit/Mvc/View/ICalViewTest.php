@@ -1,7 +1,15 @@
 <?php
+namespace Portrino\PxICal\Tests\Mvc\View;
+
+use Portrino\PxICal\Mvc\View\ICalView;
+use PHPUnit\Framework\TestCase;
+use PHPUnit_Framework_MockObject_MockObject;
+
 /**
- * Created by PhpStorm.
- * User: Leopold
- * Date: 10.10.2017
- * Time: 14:08
+ * Class ICalViewTest
+ * @package Portrino\PxICal\Tests\Mvc\View
  */
+class ICalViewTest extends TestCase
+{
+
+}

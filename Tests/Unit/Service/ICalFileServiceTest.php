@@ -1,7 +1,15 @@
 <?php
+namespace Portrino\PxICal\Tests\Service;
+
+use Portrino\PxICal\Service\ICalFileService;
+use PHPUnit\Framework\TestCase;
+use PHPUnit_Framework_MockObject_MockObject;
+
 /**
- * Created by PhpStorm.
- * User: Leopold
- * Date: 10.10.2017
- * Time: 14:09
+ * Class ICalFileServiceTest
+ * @package Portrino\PxICal\Tests\Service
  */
+class ICalFileServiceTest extends TestCase
+{
+
+}
