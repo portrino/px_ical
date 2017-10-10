@@ -26,15 +26,35 @@
         "source": "https://github.com/portrino/px_ical"
     },
     "require": {
-        "typo3/cms-core": ">=7.6.2,<8.0",
+        "typo3/cms": "^7.6",
         "eluceo/ical": "~0.11.3"
+    },
+    "require-dev": {
+        "nimut/testing-framework": "^1.0",
+        "phpunit/phpunit": "~4.8.0",
+        "squizlabs/php_codesniffer": "~3.0.2"
     },
     "autoload": {
         "psr-4": {
             "Portrino\\PxICal\\": "Classes"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Portrino\\PxICal\\Tests\\": "Tests"
+        }
+    },
+    "config": {
+        "vendor-dir": "build/vendor",
+        "bin-dir": "build/bin"
+    },
     "replace": {
         "px_ical": "*"
+    },
+    "extra": {
+        "typo3/cms": {
+            "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "web-dir": "build/web"
+        }
     }
 }

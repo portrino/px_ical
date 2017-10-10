@@ -1,4 +1,8 @@
 # px_ical - 0.1.4
+[![Code Climate](https://codeclimate.com/github/portrino/px_ical/badges/gpa.svg)](https://codeclimate.com/github/portrino/px_ical)
+[![Test Coverage](https://codeclimate.com/github/portrino/px_ical/badges/coverage.svg)](https://codeclimate.com/github/portrino/px_ical/coverage)
+[![Issue Count](https://codeclimate.com/github/portrino/px_ical/badges/issue_count.svg)](https://codeclimate.com/github/portrino/px_ical)
+
 Provides TYPO3 classes to render *.ics files via [eluceo — iCal](https://github.com/markuspoerschke/iCal) library.
 
 ## Installation
