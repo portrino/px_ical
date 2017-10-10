@@ -29,6 +29,7 @@ use Eluceo\iCal\Component\Event;
 
 /**
  * Interface ICalEventInterface
+ *
  * @package Portrino\PxICal\Domain\Model\Interfaces
  */
 interface ICalEventInterface

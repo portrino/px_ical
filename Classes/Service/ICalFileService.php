@@ -34,6 +34,7 @@ use TYPO3\CMS\Core\Utility\PathUtility;
 
 /**
  * Class ICalFileService
+ *
  * @package Portrino\PxICal\Service
  */
 class ICalFileService implements ICalFileServiceInterface
@@ -47,7 +48,7 @@ class ICalFileService implements ICalFileServiceInterface
     /**
      * Create iCal file from domain object which implements the IcalEventInterface
      *
-     * @param ICalEventInterface $domainObject
+     * @param  ICalEventInterface $domainObject
      * @return string Filepath
      */
     public function createFromDomainObject($domainObject)
@@ -58,7 +59,7 @@ class ICalFileService implements ICalFileServiceInterface
     /**
      * Remove corresponding iCal file of domain object which was maybe created before
      *
-     * @param ICalEventInterface $domainObject
+     * @param  ICalEventInterface $domainObject
      * @return bool
      */
     public function removeByDomainObject($domainObject)

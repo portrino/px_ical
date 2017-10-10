@@ -36,6 +36,7 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * Class ICalView
+ *
  * @package Portrino\PxICal\Mvc\View
  */
 class ICalView extends AbstractView
@@ -74,7 +75,7 @@ class ICalView extends AbstractView
     {
         $response = $this->controllerContext->getResponse();
         if ($response instanceof WebResponse) {
-            $response->setHeader('Content-Type','text/calendar; charset=utf-8');
+            $response->setHeader('Content-Type', 'text/calendar; charset=utf-8');
             $generatedFileName = '';
 
             /**

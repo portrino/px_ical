@@ -33,6 +33,7 @@ use TYPO3\CMS\Core\SingletonInterface;
 
 /**
  * Interface ICalServiceInterface
+ *
  * @package Portrino\PxICal\Service
  */
 interface ICalFileServiceInterface extends SingletonInterface
@@ -41,7 +42,7 @@ interface ICalFileServiceInterface extends SingletonInterface
     /**
      * Create iCal file from domain object which implements the IcalEventInterface
      *
-     * @param ICalEventInterface $domainObject
+     * @param  ICalEventInterface $domainObject
      * @return string Filepath
      */
     public function createFromDomainObject($domainObject);
@@ -49,7 +50,7 @@ interface ICalFileServiceInterface extends SingletonInterface
     /**
      * Remove corresponding iCal file of domain object which was maybe created before
      *
-     * @param ICalEventInterface $domainObject
+     * @param  ICalEventInterface $domainObject
      * @return bool
      */
     public function removeByDomainObject($domainObject);
@@ -57,7 +58,7 @@ interface ICalFileServiceInterface extends SingletonInterface
     /**
      * Create iCal file from Event object
      *
-     * @param Event $vEvent
+     * @param  Event $vEvent
      * @return string Filepath
      */
     public function create($vEvent);
@@ -66,7 +67,7 @@ interface ICalFileServiceInterface extends SingletonInterface
     /**
      * Create iCal file which maybe created before
      *
-     * @param Event $vEvent
+     * @param  Event $vEvent
      * @return boolean
      */
     public function remove($vEvent);
