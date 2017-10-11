@@ -18,9 +18,16 @@ class ICalFileServiceTest extends TestCase
      */
     protected $iCalFileService;
 
+    /**
+     * @var string
+     */
+    protected static $getFileName = 'calendar_12345.ics';
+
     const PREFIX = 'calendar';
     const UNID = '12345';
     const FILE_EXTENSION = '.ics';
+
+    protected static $typo3host = 'www.example.com';
 
     /**
      * @test
@@ -43,15 +50,18 @@ class ICalFileServiceTest extends TestCase
                     'getFileName',
                 ]
             )
+            ->disableOriginalConstructor()
             ->getMock();
 
-        $this->iCalFileService->expects(static::any())
+        $this->iCalFileService
+            ->expects(static::any())
                     ->method('getTypo3Host')
-                    ->willReturn('www.example.com');
+                    ->willReturn(self::$typo3host);
 
         $fileName = self::PREFIX . '_' . $vEvent->getUniqueId() . self::FILE_EXTENSION;
 
-        $this->iCalFileService->expects(static::any())
+        $this->iCalFileService
+            ->expects(static::any())
             ->method('getFileName')
             ->with($vEvent)
             ->willReturn($fileName);
@@ -71,7 +81,8 @@ class ICalFileServiceTest extends TestCase
             ->setDtStart(new \DateTime('2012-12-24'))
             ->setDtEnd(new \DateTime('2012-12-24'))
             ->setNoTime(true)
-            ->setSummary('Christmas');
+            ->setSummary('Christmas')
+            ->setUniqueId(self::UNID);
 
         $this->iCalFileService = $this
             ->getMockBuilder(ICalFileService::class)
@@ -81,15 +92,21 @@ class ICalFileServiceTest extends TestCase
                     'getFileName',
                 ]
             )
+            ->disableOriginalConstructor()
             ->getMock();
 
-        $this->iCalFileService->expects(static::any())
+        $this->iCalFileService
+            ->expects(static::any())
             ->method('getTypo3Host')
-            ->willReturn('www.example.com');
+            ->willReturn(self::$typo3host);
 
-        $this->iCalFileService->expects(static::any())
+        $fileName = self::PREFIX . '_' . $vEvent->getUniqueId() . self::FILE_EXTENSION;
+
+        $this->iCalFileService
+            ->expects(static::any())
             ->method('getFileName')
-            ->willReturn('testfile.ics');
+            ->with($vEvent)
+            ->willReturn($fileName);
 
         $this->iCalFileService->create($vEvent);
 
