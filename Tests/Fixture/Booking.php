@@ -35,7 +35,7 @@ class Booking implements ICalEventInterface
     /**
      * @param string $uniqueId
      */
-    public function setUniqueId(string $uniqueId)
+    public function setUniqueId($uniqueId)
     {
         $this->uniqueId = $uniqueId;
         return $this;
@@ -44,7 +44,7 @@ class Booking implements ICalEventInterface
     /**
      * @param \DateTime $dtStart
      */
-    public function setDtStart(\DateTime $dtStart)
+    public function setDtStart($dtStart)
     {
         $this->dtStart = $dtStart;
         return $this;
@@ -53,7 +53,7 @@ class Booking implements ICalEventInterface
     /**
      * @param \DateTime $dtEnd
      */
-    public function setDtEnd(\DateTime $dtEnd)
+    public function setDtEnd($dtEnd)
     {
         $this->dtEnd = $dtEnd;
         return $this;
@@ -62,7 +62,7 @@ class Booking implements ICalEventInterface
     /**
      * @param string $summary
      */
-    public function setSummary(string $summary)
+    public function setSummary($summary)
     {
         $this->summary = $summary;
         return $this;
