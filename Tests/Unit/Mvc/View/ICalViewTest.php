@@ -28,6 +28,16 @@ class ICalViewTest extends UnitTestCase
     protected static $typo3host = 'www.example.com';
 
     /**
+     * @var string
+     */
+    protected static $FileName = 'testFileName';
+
+    /**
+     * @var string
+     */
+    protected $overrideFileName = '';
+
+    /**
      * @test
      */
     public function render()
@@ -99,6 +109,8 @@ class ICalViewTest extends UnitTestCase
 
         $vCalendar = new Calendar(self::$typo3host);
         $vCalendar->addComponent($vEvent);
+
+        $overrideName = $this->view->setOverrideFileName(self::$FileName);
 
         static::assertEquals($vCalendar->render(), $renderedView);
     }
