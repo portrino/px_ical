@@ -1,6 +1,6 @@
 <?php
 
-namespace Portrino\PxICal\Tests\Mvc\View;
+namespace Portrino\PxICal\Tests\Unit\Mvc\View;
 
 use Eluceo\iCal\Component\Calendar;
 use Eluceo\iCal\Component\Event;

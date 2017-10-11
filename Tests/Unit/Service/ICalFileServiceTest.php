@@ -1,5 +1,5 @@
 <?php
-namespace Portrino\PxICal\Tests\Service;
+namespace Portrino\PxICal\Tests\Unit\Service;
 
 use Eluceo\iCal\Component\Event;
 use Portrino\PxICal\Service\ICalFileService;
