@@ -1,7 +1,9 @@
 # px_ical - 0.1.4
-[![Build Status](https://travis-ci.org/portrino/px_ical.svg?branch=master)](https://travis-ci.org/portrino/px_ical) [![Code Climate](https://codeclimate.com/github/portrino/px_ical/badges/gpa.svg)](https://codeclimate.com/github/portrino/px_ical)
+[![Build Status](https://travis-ci.org/portrino/px_ical.svg?branch=master)](https://travis-ci.org/portrino/px_ical) [![Maintainability](https://api.codeclimate.com/v1/badges/7d3d6209eb36f733aeec/maintainability)](https://codeclimate.com/github/portrino/px_ical/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/7d3d6209eb36f733aeec/test_coverage)](https://codeclimate.com/github/portrino/px_ical/test_coverage)
                                                                                                                                                                  [![Test Coverage](https://codeclimate.com/github/portrino/px_ical/badges/coverage.svg)](https://codeclimate.com/github/portrino/px_ical/coverage)
                                                                                                                                                                  [![Issue Count](https://codeclimate.com/github/portrino/px_ical/badges/issue_count.svg)](https://codeclimate.com/github/portrino/px_ical)
+                                                                                                                                                                 [![Latest Stable Version](https://poser.pugx.org/portrino/px_ical/v/stable)](https://packagist.org/packages/portrino/px_ical)
+                                                                                                                                                                 [![Total Downloads](https://poser.pugx.org/portrino/px_ical/downloads)](https://packagist.org/packages/portrino/px_ical)
 
 Provides TYPO3 classes to render *.ics files via [eluceo — iCal](https://github.com/markuspoerschke/iCal) library.
 
