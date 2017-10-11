@@ -137,10 +137,6 @@ class ICalView extends AbstractView
 
             $response->setHeader('Content-Disposition', 'attachment; filename="' . $fileName . '"');
             $result = $this->vCalendar->render();
-//            $response->setContent();
-//            return $response->getContent();
-//            $response->send();
-//            die();
         }
         return $result;
     }
