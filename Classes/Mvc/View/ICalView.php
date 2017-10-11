@@ -73,6 +73,7 @@ class ICalView extends AbstractView
      */
     public function render()
     {
+        $result = '';
         $response = $this->controllerContext->getResponse();
         if ($response instanceof WebResponse) {
             $response->setHeader('Content-Type', 'text/calendar; charset=utf-8');
@@ -135,11 +136,13 @@ class ICalView extends AbstractView
             $fileName = (!empty($this->overrideFileName)) ? $this->overrideFileName : $generatedFileName;
 
             $response->setHeader('Content-Disposition', 'attachment; filename="' . $fileName . '"');
-            $response->setContent($this->vCalendar->render());
-            $response->send();
-            die();
+            $result = $this->vCalendar->render();
+//            $response->setContent();
+//            return $response->getContent();
+//            $response->send();
+//            die();
         }
-        return '';
+        return $result;
     }
 
     /**
