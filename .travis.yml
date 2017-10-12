@@ -7,6 +7,10 @@ language: php
 matrix:
   fast_finish: true
   include:
+    - php: 5.5
+      env: TYPO3_VERSION=^7.6 PHPSTAN=0
+    - php: 5.6
+      env: TYPO3_VERSION=^7.6 PHPSTAN=0
     - php: 7.0
       env: TYPO3_VERSION=^7.6 PHPSTAN=1
     - php: 7.1

@@ -39,11 +39,15 @@ class ICalViewTest extends UnitTestCase
     protected $overrideFileName = '';
 
     /**
+     * @var string
+     */
+    protected static $timeStamp = '20171012T062640Z';
+
+    /**
      * @test
      */
     public function renderSingleEvent()
     {
-
         $this->view = $this
             ->getMockBuilder(ICalView::class)
             ->setMethods(
@@ -90,6 +94,7 @@ class ICalViewTest extends UnitTestCase
             ->setUniqueId('123456')
             ->setDtStart(new \DateTime('2012-12-24'))
             ->setDtEnd(new \DateTime('2012-12-24'))
+            ->setDtStamp(self::$timeStamp)
             ->setNoTime(false)
             ->setSummary('Christmas');
 
@@ -109,7 +114,6 @@ class ICalViewTest extends UnitTestCase
      */
     public function renderMultipleEvents()
     {
-
         $this->view = $this
             ->getMockBuilder(ICalView::class)
             ->setMethods(
@@ -156,6 +160,7 @@ class ICalViewTest extends UnitTestCase
             ->setUniqueId('123456')
             ->setDtStart(new \DateTime('2012-04-15'))
             ->setDtEnd(new \DateTime('2012-04-15'))
+            ->setDtStamp(self::$timeStamp)
             ->setSummary('Christmas');
 
         $booking2 = new Booking();
@@ -163,6 +168,7 @@ class ICalViewTest extends UnitTestCase
             ->setUniqueId('abcdef')
             ->setDtStart(new \DateTime('2012-12-24'))
             ->setDtEnd(new \DateTime('2012-12-24'))
+            ->setDtStamp(self::$timeStamp)
             ->setSummary('Eastern');
 
         $vCalendar = new Calendar(self::$typo3host);

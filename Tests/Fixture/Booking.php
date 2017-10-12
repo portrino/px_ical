@@ -33,6 +33,11 @@ class Booking implements ICalEventInterface
     protected $summary;
 
     /**
+     * @var string
+     */
+    protected $dtStamp;
+
+    /**
      * @param string $uniqueId
      */
     public function setUniqueId($uniqueId)
@@ -69,6 +74,15 @@ class Booking implements ICalEventInterface
     }
 
     /**
+     * @param $dtStamp
+     */
+    public function setDtStamp($dtStamp)
+    {
+        $this->dtStamp = $dtStamp;
+        return $this;
+    }
+
+    /**
      * @return Event
      */
     public function __toICalEvent()
@@ -79,6 +93,7 @@ class Booking implements ICalEventInterface
             ->setDtStart($this->dtStart)
             ->setDtEnd($this->dtEnd)
             ->setNoTime(false)
+            ->setDtStamp($this->dtStamp)
             ->setSummary($this->summary);
         return $result;
     }
