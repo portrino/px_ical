@@ -152,7 +152,7 @@ class ICalView extends AbstractView
     /**
      * @param string $overrideFileName
      */
-    public function setOverrideFileName(string $overrideFileName)
+    public function setOverrideFileName($overrideFileName)
     {
         $this->overrideFileName = $overrideFileName;
     }
@@ -160,7 +160,7 @@ class ICalView extends AbstractView
     /**
      * @param string $prefix
      */
-    public function setPrefix(string $prefix)
+    public function setPrefix($prefix)
     {
         $this->prefix = $prefix;
     }

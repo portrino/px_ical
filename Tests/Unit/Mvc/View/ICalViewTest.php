@@ -34,14 +34,9 @@ class ICalViewTest extends UnitTestCase
     protected static $FileName = 'testFileName';
 
     /**
-     * @var string
+     *
      */
-    protected $overrideFileName = '';
-
-    /**
-     * @test
-     */
-    public function renderSingleEvent()
+    protected function setUp()
     {
         $this->view = $this
             ->getMockBuilder(ICalView::class)
@@ -83,6 +78,14 @@ class ICalViewTest extends UnitTestCase
             ->willReturn($response);
 
         $this->view->setControllerContext($controllerContext);
+    }
+
+    /**
+     * @test
+     */
+    public function renderSingleEvent()
+    {
+
 
         $vEvent = new Event();
         $vEvent
@@ -100,7 +103,7 @@ class ICalViewTest extends UnitTestCase
 
         $renderedView = $this->view->render();
 
-        $overrideName = $this->view->setOverrideFileName(self::$FileName);
+        $this->view->setOverrideFileName(self::$FileName);
         static::assertEquals($vCalendar->render(), $renderedView);
     }
 
@@ -109,47 +112,6 @@ class ICalViewTest extends UnitTestCase
      */
     public function renderMultipleEvents()
     {
-        $this->view = $this
-            ->getMockBuilder(ICalView::class)
-            ->setMethods(
-                [
-                    'getTypo3Host'
-                ]
-            )
-            ->getMock();
-
-        $this->view->expects(static::any())
-            ->method('getTypo3Host')
-            ->willReturn(self::$typo3host);
-
-        $this->view->initializeView();
-
-        /** @var ControllerContext|PHPUnit_Framework_MockObject_MockObject $controllerContext */
-        $controllerContext = $this
-            ->getMockBuilder(ControllerContext::class)
-            ->setMethods(
-                [
-                    'getResponse',
-                ]
-            )
-            ->getMock();
-
-        $response = $this
-            ->getMockBuilder(Response::class)
-            ->setMethods(
-                [
-                    'getResponse',
-                ]
-            )
-            ->getMock();
-
-        $controllerContext
-            ->expects(static::any())
-            ->method('getResponse')
-            ->willReturn($response);
-
-        $this->view->setControllerContext($controllerContext);
-
         $booking1 = new Booking();
         $booking1
             ->setUniqueId('123456')
@@ -175,7 +137,7 @@ class ICalViewTest extends UnitTestCase
 
         $renderedView = $this->view->render();
 
-        $overrideName = $this->view->setOverrideFileName(self::$FileName);
+        $this->view->setOverrideFileName(self::$FileName);
 
         static::assertEquals($vCalendar->render(), $renderedView);
     }
