@@ -33,7 +33,7 @@ class Booking implements ICalEventInterface
     protected $summary;
 
     /**
-     * @var string
+     * @var \DateTime
      */
     protected $dtStamp;
 
