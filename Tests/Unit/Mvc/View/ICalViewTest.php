@@ -88,7 +88,7 @@ class ICalViewTest extends UnitTestCase
     /**
      * @test
      */
-    public function renderSingleEvent()
+    public function renderSingleEventAsEvent()
     {
         $vEvent = new Event();
         $vEvent
@@ -175,6 +175,31 @@ class ICalViewTest extends UnitTestCase
         $this->view
             ->assign('booking1', $booking1)
             ->assign('booking2', $booking2);
+
+        $renderedView = $this->view->render();
+
+        $this->view->setPrefix(self::$prefix);
+        $this->view->setOverrideFileName(self::$FileName);
+        static::assertEquals($vCalendar->render(), $renderedView);
+    }
+
+    /**
+     * @test
+     */
+    public function renderSingleEventAsBooking()
+    {
+        $booking1 = new Booking();
+        $booking1
+            ->setUniqueId('123456')
+            ->setDtStart(new \DateTime('2012-04-15'))
+            ->setDtEnd(new \DateTime('2012-04-15'))
+            ->setDtStamp(new \DateTime('20171012T062640Z'))
+            ->setSummary('Christmas');
+
+        $vCalendar = new Calendar(self::$typo3host);
+        $vCalendar->addComponent($booking1->__toICalEvent());
+
+        $this->view->assign('booking1', $booking1);
 
         $renderedView = $this->view->render();
 
