@@ -34,6 +34,11 @@ class ICalViewTest extends UnitTestCase
     protected static $FileName = 'testFileName';
 
     /**
+     * @var string
+     */
+    protected static $prefix = 'cal_';
+
+    /**
      *
      */
     protected function setUp()
@@ -85,8 +90,6 @@ class ICalViewTest extends UnitTestCase
      */
     public function renderSingleEvent()
     {
-
-
         $vEvent = new Event();
         $vEvent
             ->setUniqueId('123456')
@@ -104,6 +107,7 @@ class ICalViewTest extends UnitTestCase
         $renderedView = $this->view->render();
 
         $this->view->setOverrideFileName(self::$FileName);
+        $this->view->setPrefix(self::$prefix);
         static::assertEquals($vCalendar->render(), $renderedView);
     }
 
@@ -132,13 +136,14 @@ class ICalViewTest extends UnitTestCase
         $vCalendar->addComponent($booking1->__toICalEvent());
         $vCalendar->addComponent($booking2->__toICalEvent());
 
-        $this->view->assign('booking1', $booking1);
-        $this->view->assign('booking2', $booking2);
+        $this->view
+            ->assign('booking1', $booking1)
+            ->assign('booking2', $booking2);
 
         $renderedView = $this->view->render();
 
+        $this->view->setPrefix(self::$prefix);
         $this->view->setOverrideFileName(self::$FileName);
-
         static::assertEquals($vCalendar->render(), $renderedView);
     }
 }
