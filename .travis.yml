@@ -53,6 +53,7 @@ before_script:
   - build/bin/typo3cms install:generatepackagestates
   - build/bin/typo3cms database:updateschema *.add,*.change
   - build/bin/typo3cms cache:flushgroups system
+  - cp -f .travis/typo3/LocalConfiguration.php build/web/typo3conf/LocalConfiguration.php
 
 script:
   - >
