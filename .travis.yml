@@ -50,13 +50,16 @@ before_script:
 
   - mkdir -p build/web/typo3conf
   - cp -f .travis/typo3/LocalConfiguration.php build/web/typo3conf/LocalConfiguration.php
+  - rm -f build/web/typo3conf/PackageStates.php
+  - build/bin/typo3cms install:generatepackagestates
+  - build/bin/typo3cms database:updateschema *.add,*.change
 
 
 script:
   - >
     echo;
     echo "Running PHP PSR-2 Coding Standards Checks";
-    build/bin/phpcs --standard=PSR2  --warning-severity=0 Classes/ Tests/Unit/
+    build/bin/phpcs --standard=PSR2 --warning-severity=0 Classes/ Tests/Unit/
   - >
     echo;
     echo "Running unit tests";
