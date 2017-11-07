@@ -22,6 +22,8 @@ addons:
   apt:
     packages:
       - parallel
+      - nginx
+      - realpath
 
 cache:
   directories:
@@ -31,6 +33,10 @@ before_install:
   - composer self-update
   - composer --version
 
+install:
+  - composer install
+  - .travis/install-nginx.sh
+
 before_script:
   - composer require typo3/cms=$TYPO3_VERSION
   # Restore composer.json
@@ -39,6 +45,7 @@ before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
+  - mkdir -p .build/web/typo3conf
 
 script:
   - >
