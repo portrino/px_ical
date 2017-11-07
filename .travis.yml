@@ -48,7 +48,7 @@ before_script:
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 
-  - mkdir -p .build/web/typo3conf
+  - mkdir -p build/web/typo3conf
   - cp -f .travis/typo3/LocalConfiguration.php build/web/typo3conf/LocalConfiguration.php
   - cp -f .travis/provision/hello.php build/web/hello.php
 
