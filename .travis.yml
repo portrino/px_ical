@@ -72,6 +72,8 @@ script:
   - >
     echo;
     curl -vsf 'http://localhost:8080/typo3/' &> /dev/stdout
-    wget -O 'http://localhost:8080/typo3/'
+  - >
+    echo;
+    wget -O - http://localhost:8080/typo3/ > /dev/null 2>&1
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
