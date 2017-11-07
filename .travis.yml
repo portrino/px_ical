@@ -73,6 +73,9 @@ script:
   - >
     echo;
     curl -vsf 'http://127.0.0.1:8080/' &> /dev/stdout
+  - >
+    echo;
+    tail -f /tmp/error.log
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
