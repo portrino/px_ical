@@ -76,7 +76,8 @@ script:
   - >
     echo;
     echo "Running acceptance tests";
-    composer acceptance-test
+    build/bin/codecept build -c Tests/Acceptance/codeception.yml --no-interaction
+    build/bin/codecept run -c Tests/Acceptance/codeception.yml --no-interaction
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
