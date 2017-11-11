@@ -1,6 +1,6 @@
-<?php 
+<?php
 $I = new AcceptanceTester($scenario);
-$I->wantTo('To open backend login without errors.');
+$I->wantTo('Open backend login without errors.');
 
 $I->amOnPage('/typo3/index.php');
 

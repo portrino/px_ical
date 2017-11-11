@@ -75,10 +75,6 @@ script:
 
   - >
     echo;
-    curl -vsf 'http://127.0.0.1:8080/typo3/index.php' &> /dev/stdout
-
-  - >
-    echo;
     echo "Running acceptance tests";
     build/bin/codecept run -c Tests/Acceptance/codeception.yml --debug
 
