@@ -46,12 +46,18 @@
             "Portrino\\PxICal\\Tests\\": "Tests"
         }
     },
+    "replace": {
+        "px_ical": "*"
+    },
     "config": {
         "vendor-dir": "build/vendor",
         "bin-dir": "build/bin"
     },
-    "replace": {
-        "px_ical": "*"
+    "scripts": {
+        "post-autoload-dump": [
+            "mkdir -p build/web/typo3conf/ext/",
+            "[ -L build/web/typo3conf/ext/px_ical ] || ln -snvf ../../../../. build/web/typo3conf/ext/px_ical"
+        ]
     },
     "extra": {
         "helhum/typo3-console": {
