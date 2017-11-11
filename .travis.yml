@@ -55,7 +55,6 @@ before_script:
   - build/bin/typo3cms extension:activate px_ical
   - build/bin/typo3cms configuration:set SYS/trustedHostsPattern .*
   - build/bin/typo3cms cache:flushgroups system
-  - build/bin/typo3cms extension:list --active
 
 script:
   - >
@@ -76,7 +75,7 @@ script:
   - >
     echo;
     echo "Running acceptance tests";
-    build/bin/codecept run -c Tests/Acceptance/codeception.yml --no-interaction
+    build/bin/codecept run -c Tests/Acceptance/codeception.yml --debug
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
