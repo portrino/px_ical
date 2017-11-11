@@ -76,7 +76,6 @@ script:
   - >
     echo;
     echo "Running acceptance tests";
-    build/bin/codecept build -c Tests/Acceptance/codeception.yml --no-interaction
     build/bin/codecept run -c Tests/Acceptance/codeception.yml --no-interaction
 
 after_script:
