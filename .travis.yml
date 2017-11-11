@@ -52,8 +52,10 @@ before_script:
   - build/bin/typo3cms install:setup --non-interactive --database-host-name=127.0.0.1 --database-port=3306 --database-user-name=travis --database-name=typo3 --use-existing-database --admin-user-name=travis --admin-password=travis123456! --site-setup-type=site
   - build/bin/typo3cms install:generatepackagestates
   - build/bin/typo3cms database:updateschema *.add,*.change
-  - build/bin/typo3cms configuration:set SYS/trustedHostsPattern .*
+  - build/bin/typo3cms extension:activate px_ical
   - build/bin/typo3cms cache:flushgroups system
+  - cp -f .travis/typo3/LocalConfiguration.php build/web/typo3conf/LocalConfiguration.php
+  - build/bin/typo3cms configuration:set SYS/trustedHostsPattern .*
 
 script:
   - >
@@ -70,6 +72,10 @@ script:
     echo;
     echo "Running PHP Static Analysis";
     if [[ $PHPSTAN = 1 ]]; then composer require --dev phpstan/phpstan:^0.8 && build/bin/phpstan analyse -c phpstan.neon -l 7 Classes Tests/Unit Tests/Fixture; fi
+
+  - >
+    echo;
+    curl -vsf 'http://127.0.0.1:8080/typo3/index.php' &> /dev/stdout
 
   - >
     echo;
