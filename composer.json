@@ -30,6 +30,7 @@
         "eluceo/ical": "~0.11.3"
     },
     "require-dev": {
+        "codeception/codeception": "~2.3.6",
         "helhum/typo3-console": "^4.9",
         "nimut/testing-framework": "^1.0",
         "phpunit/phpunit": "~4.8.0",
