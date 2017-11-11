@@ -54,6 +54,7 @@
         "bin-dir": "build/bin"
     },
     "scripts": {
+        "acceptance-test": "build/bin/codecept run -c Tests/Acceptance/codeception.yml --no-interaction",
         "post-autoload-dump": [
             "mkdir -p build/web/typo3conf/ext/",
             "[ -L build/web/typo3conf/ext/px_ical ] || ln -snvf ../../../../. build/web/typo3conf/ext/px_ical"

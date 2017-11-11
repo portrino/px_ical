@@ -76,7 +76,7 @@ script:
   - >
     echo;
     echo "Running acceptance tests";
-    build/bin/codecept run -c Tests/Acceptance/codeception.yml
+    composer acceptance-test
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
