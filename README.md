@@ -147,3 +147,12 @@ _by event object:_
 ```php
 $file = $this->iCalFileService->remove($vEvent);
 ```
+
+## Authors
+
+![](https://avatars0.githubusercontent.com/u/726519?s=40&v=4)
+
+* **André Wuttig** - *Initial work, Unit Tests* - [aWuttig](https://github.com/aWuttig)
+* **Leopold Engst** - *Unit Tests* - [leen2104](https://github.com/leen2104)
+
+See also the list of [contributors](https://github.com/portrino/px_ical/graphs/contributors) who participated in this project.
