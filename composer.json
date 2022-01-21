@@ -49,7 +49,7 @@
         "bin-dir": "build/bin"
     },
     "replace": {
-        "px_ical": "*"
+        "typo3-ter/px_ical": "self.version"
     },
     "extra": {
         "typo3/cms": {
